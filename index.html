@@ -157,6 +157,7 @@
         </div>
 
         <div id="s4Fields">
+          <p class="s4__error" id="s4Error" hidden>Não foi possível enviar. Confira os dados e tente de novo.</p>
           <label class="s4__field">
             <span class="s4__label">NOME</span>
             <input type="text" name="nome" required>
@@ -174,6 +175,8 @@
               <option value="quero">Ainda não, mas quero empreender</option>
             </select>
           </label>
+          <!-- honeypot: campo escondido, só bots preenchem -->
+          <input type="text" name="website" class="s4__honeypot" tabindex="-1" autocomplete="off">
           <button type="submit" class="s4__submit">Quero entrar na lista</button>
         </div>
       </form>

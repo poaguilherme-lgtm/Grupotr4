@@ -1,0 +1,7 @@
+# Bloqueia acesso direto via navegador a este diretório.
+# O admin.php lê o arquivo pelo sistema de arquivos, não por HTTP, então continua funcionando.
+Require all denied
+<IfModule !mod_authz_core.c>
+  Order deny,allow
+  Deny from all
+</IfModule>

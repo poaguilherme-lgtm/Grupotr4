@@ -491,6 +491,25 @@ input:focus, select:focus { outline: none; }
   margin: 0;
 }
 
+.s4__honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.s4__error {
+  font-size: 14px;
+  color: #B5502E;
+  margin: 0 0 4px;
+}
+
+.s4__submit[disabled] {
+  opacity: 0.6;
+  cursor: default;
+}
+
 /* SECTION 5: INSTITUCIONAL / CONTATO */
 .s5 {
   padding: 120px 48px 64px;

@@ -150,10 +150,40 @@
   var bpmForm = document.getElementById('bpmForm');
   var s4Fields = document.getElementById('s4Fields');
   var s4Success = document.getElementById('s4Success');
+  var s4Error = document.getElementById('s4Error');
 
   bpmForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    s4Fields.hidden = true;
-    s4Success.hidden = false;
+    s4Error.hidden = true;
+
+    var submitBtn = bpmForm.querySelector('.s4__submit');
+    submitBtn.disabled = true;
+
+    var payload = {
+      nome: bpmForm.nome.value,
+      email: bpmForm.email.value,
+      status: bpmForm.status.value,
+      website: bpmForm.website.value
+    };
+
+    fetch('php/submit.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
+      .then(function (result) {
+        if (result.ok && result.data && result.data.ok) {
+          s4Fields.hidden = true;
+          s4Success.hidden = false;
+        } else {
+          s4Error.hidden = false;
+          submitBtn.disabled = false;
+        }
+      })
+      .catch(function () {
+        s4Error.hidden = false;
+        submitBtn.disabled = false;
+      });
   });
 })();
